@@ -39,8 +39,25 @@ const Form = () => {
     const hendleSubmit = () => {
         cel = parseInt(cel, 10)
         if(name == ""){
-            
+            alert('El campo nombre es requerido')
         }
+        //consult
+        const requestInit = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(cite)
+        }
+        //query
+        fetch('http://localhost:9000/oficinas', requestInit)
+        .then(res => res.json())
+        .then(res => console.log(res))
+        //reset states
+        setCite({
+            name: "",
+            cel: "",
+            city: "",
+            addres: ""
+        })
     }
     return (
         <form onSubmit={hendleSubmit}>
@@ -50,7 +67,7 @@ const Form = () => {
                         <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="name">
                             Nombre
                         </label>
-                        <input onChange={handleChange} name="name" className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="name" type="text" placeholder="Fiscalía de Distrito "/>
+                        <input onChange={handleChange} name="name" value={name} className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="name" type="text" placeholder="Fiscalía de Distrito "/>
                         <p className="text-red text-xs italic">Please fill out this field.</p>
                     </div>
                     <div className="md:w-1/2 px-3">
@@ -58,10 +75,10 @@ const Form = () => {
                             Departamento
                         </label>
                         <div className="relative">
-                            <select onChange={handleChange} name="city" className="block  w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="city">
+                            <select onChange={handleChange} value={city} name="city" className="block  w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="city">
                                 <option value="0"> Seleccionar</option>
                                 {dep.map(item => (
-                                    <option value={item.id}> {item.name}</option>
+                                    <option value={item.name}> {item.name}</option>
                                 ))}
                             </select>
                         </div>
@@ -72,17 +89,17 @@ const Form = () => {
                         <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="addres">
                             Direccion
                         </label>
-                        <input onChange={handleChange} name="address" className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="addres" type="text" placeholder="7a Calle 8-40 Zona 3 "/>
+                        <input onChange={handleChange} value={address} name="address" className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="addres" type="text" placeholder="7a Calle 8-40 Zona 3 "/>
                         <p className="text-red text-xs italic">Please fill out this field.</p>
                     </div>
                     <div className="md:w-1/2 px-3">
                         <label className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" htmlFor="cel">
                             Numero de telefono
                         </label>
-                        <input onChange={handleChange} name="cel" className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="cel" type="number" placeholder="12345678"/>
+                        <input onChange={handleChange} value={cel} name="cel" className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" id="cel" type="number" placeholder="12345678"/>
                     </div>
                 </div>
-                <button>Enviar</button>
+                <button class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">Registrar</button>
             </div>
         </form>
     );

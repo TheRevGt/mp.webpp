@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card";
-const Home = () => {
+import Cardfiscalia from "./CardFiscalia";
+const Fiscalis = () => {
     const [cites, setCites] = useState([])
     const [citesUpdate, setCitesUpdate] = useState(false)
     useEffect(() =>{
@@ -26,12 +26,13 @@ const Home = () => {
                     <p className="text-gray-500 leading-relaxed font-light text-xl mx-auto pb-2">Cada día aun más serca de usted.</p>
                 </header>
                 <div className="flex flex-wrap flex-row ">
+
                     {cites.map(cite => (
-                        <Card key={cite.ID} idCite={cite.ID} name={cite.name} city={cite.city} address={cite.address} cel={cite.cel} setCitesUpdate={setCitesUpdate}/>
+                        <Cardfiscalia key={cite.ID} idCite={cite.ID} name={cite.name} city={cite.city} address={cite.address} cel={cite.cel} setCitesUpdate={setCitesUpdate}/>
                     ))}
                 </div>
             </div>
         </div>
     );
 }
-export default Home
+export default Fiscalis
