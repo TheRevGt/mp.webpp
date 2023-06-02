@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ title }) => {
     return (
@@ -19,8 +20,9 @@ const Navbar = ({ title }) => {
                 </button>
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
-                <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Fiscalias</a>
-                <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Rigistrar</a>
+                <Link to="/" className="text-sm font-semibold leading-6 text-gray-900">Fiscalias</Link>
+                <Link to="/registro" className="text-sm font-semibold leading-6 text-gray-900">Rigistrar</Link>
+                <Link to="/fiscalias" className="text-sm font-semibold leading-6 text-gray-900">Fiscalias Admin</Link>
                 </div>
             </nav>
             <div className="lg:hidden" role="dialog" aria-modal="true">

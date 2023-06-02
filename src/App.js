@@ -1,17 +1,20 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import Navbar from './Components/Navbar'
-import Home from './Components/Home'
-import Form from './Components/Form';
-import Fiscalis from './Components/Fiscalis';
+import { Route, Routes } from 'react-router-dom';
 
-
+import Layout from "./Components/layouts/app.js"
+import Home from "./Components/page/Home.js"
+import Register from "./Components/page/Form.js"
+import AdminHome from "./Components/page/Fiscalis.js"
 function App() {
   return (
     <Fragment>
-      <Navbar title='Fiscalias de ministerio publico'/>
-      {/* <Form/> */}
-      <Home/>
-      {/* <Fiscalis/> */}
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route path='/' element={<Home/>} />
+          <Route path='/registro' element={<Register/>} />
+          <Route path='/fiscalias' element={<AdminHome/>} />
+        </Route>
+      </Routes>
     </Fragment>
   );
 }
